@@ -9,6 +9,9 @@ app.use(bodyParser());
 var db = mongoskin.db('mongodb://localhost:27017/watchnext', {safe:true})
 
 
+app.use(express.static(__dirname + '/public'))
+
+
 app.route('/api/watchnextLists')
     .all(function (req, res, next) {
         req.watchnextLists = db.collection('watchnextLists')
@@ -50,5 +53,7 @@ app.route('/api/watchnextLists/:id')
             res.send((result === 1) ? {msg: 'success'} : {msg: 'error'})
         })
     })
+
+
 
 app.listen(3000);
