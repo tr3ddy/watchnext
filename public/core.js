@@ -1,4 +1,10 @@
 /**
  * Created by fabian on 6/15/14.
  */
-var x;
+(function() {
+    var app = angular.module('watchnext', []);
+
+    app.controller('WatchnextController', function () {
+        this.list = "hallO";
+    });
+})();
