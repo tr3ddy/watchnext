@@ -8,7 +8,7 @@ exports.addUser = (req, res)->
 		}
 	user.save (err) ->
 		if err
-			res.send(err)
+			return res.send(err)
 		res.json {message: 'New user added'}
 
 exports.getAllUsers = (req, res) ->

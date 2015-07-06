@@ -8,6 +8,7 @@ mongoose = require 'mongoose'
 
 userController = require './controllers/user'
 authController = require './controllers/auth'
+watchnextListController = require './controllers/watchnextlist'
 
 port = 8080
 app = express()
@@ -23,6 +24,10 @@ router = express.Router()
 router.route('/users')
     .post(userController.addUser)
     .get(authController.isAuthenticated, userController.getAllUsers)
+
+router.route('/watchnextlists')
+    .post(authController.isAuthenticated, watchnextListController.addList)
+    .get(authController.isAuthenticated, watchnextListController.getAllLists)
 
 app.use '/api', router
 
