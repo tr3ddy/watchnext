@@ -25,9 +25,16 @@ router.route('/users')
     .post(userController.addUser)
     .get(authController.isAuthenticated, userController.getAllUsers)
 
-router.route('/watchnextlists')
+router.route('/lists')
     .post(authController.isAuthenticated, watchnextListController.addList)
     .get(authController.isAuthenticated, watchnextListController.getAllLists)
+
+router.route('/lists/:list_id')
+	.get(authController.isAuthenticated, watchnextListController.getListById)
+	.put(authController.isAuthenticated, watchnextListController.updateList)
+
+router.route('/lists/:list_id/movies')
+	.post(authController.isAuthenticated, watchnextListController.insertMovie)
 
 app.use '/api', router
 

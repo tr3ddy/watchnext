@@ -10,9 +10,7 @@ WatchNextListSchema = new Schema {
 		type: String,
 		required: true
 	},
-	movies: {
-		type: Array
-	}
+	movies: [{type: Schema.ObjectId, ref: 'Movie'}]
 }
 
 module.exports = mongoose.model 'WatchNextList', WatchNextListSchema
