@@ -1,5 +1,5 @@
 mongoose = require 'mongoose'
-bcrypt = require 'bcrypt'
+bcrypt = require 'bcrypt-nodejs'
 Schema = mongoose.Schema
 
 UserSchema = new Schema {
@@ -21,13 +21,13 @@ UserSchema = new Schema {
 UserSchema.pre('save', (callback) -> 
 	user = @
 	if not user.isModified 'password'
-		callback()
+		return callback()
 	bcrypt.genSalt 5, (err, salt) ->
 		if err
-			callback err
+			return callback err
 		bcrypt.hash user.password, salt, null, (err, hash) ->
 			if err
-				callback err
+				return callback err
 			user.password = hash
 			callback()
 			return
